@@ -9,5 +9,6 @@ setup(name='sheets',
         author_email='charlesrymal@gmail.com',
         license='MIT',
         packages=['sheets'],
-        zip_safe=False)
+        zip_safe=False,
+        )
 
