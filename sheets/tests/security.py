@@ -17,15 +17,15 @@ class SecurityTest(unittest.TestCase):
         c = s.cells.cells[0, 0]
 
         print('cell =', c)
-        print(c.code.co_names)
         
         print(s.cells.cells[0, 0].value)
 
 
-    
-        for name in c.code.co_names:
-            if name[:2] == '__':
-                print('not allowed')
+        if c.code is not None:
+            print(c.code.co_names)
+            for name in c.code.co_names:
+                if name[:2] == '__':
+                    print('not allowed')
 
 
 

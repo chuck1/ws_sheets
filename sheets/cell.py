@@ -6,6 +6,10 @@ import io
 
 import sheets.helper
 
+class NotAllowedError(Exception):
+    def __init__(self, message):
+        super(NotAllowedError, self).__init__(message)
+
 class RecursiveCellRef(Exception): pass
 
 class Cell(object):
@@ -20,6 +24,13 @@ class Cell(object):
 
     def __getstate__(self):
         return dict((k, getattr(self, k)) for k in ['r', 'c', 'string'])
+
+    def check_code(self):
+        if self.code is None: return
+
+        for name in self.code.co_names:
+            if name[:2] == '__':
+                raise NotAllowedError("For security, use of {} is not allowed".format(name))
 
     def set_string(self, sheet, s):
         """
@@ -42,6 +53,13 @@ class Cell(object):
         except Exception as e:
             self.code = None
             self.comp_exc = e
+
+        try:
+            self.check_code()
+        except NotAllowedError as e:
+            self.code = None
+            self.comp_exc = e
+    
 
     def get_globals(self, book, sheet):
         g = dict(book.glo)
