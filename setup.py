@@ -9,6 +9,10 @@ setup(name='sheets',
         author_email='charlesrymal@gmail.com',
         license='MIT',
         packages=['sheets'],
+        install_requires=[
+            'fs',
+            'numpy',
+            ],
         zip_safe=False,
         )
 
