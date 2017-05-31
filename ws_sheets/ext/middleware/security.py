@@ -1,7 +1,7 @@
-import myexecutor
+import codemach
 
-import sheets.exception
-import sheets.middleware
+import ws_sheets.exception
+import ws_sheets.middleware
 
 class SecurityTest1(object):
     def call_book_globals(self, book, res):
@@ -73,7 +73,7 @@ class SecurityTest1(object):
         if f.__name__ == '__getattribute__':
             #print("{}({}) {}".format(f.__name__, args, context))
             if not args[0] in ['__getitem__', 'sheets']:
-                raise sheets.exception.NotAllowedError(
+                raise ws_sheets.exception.NotAllowedError(
                         "stopped by protector in context {}. {}({})".format(
                             context, f.__name__, args))
 
@@ -106,27 +106,27 @@ class SecurityTest1(object):
         if False: # turn off to test other security measures
             for name in cell.code.co_names:
                 if '__' in name:
-                    raise sheets.exception.NotAllowedError(
+                    raise ws_sheets.exception.NotAllowedError(
                             "For security, use of {} is not allowed".format(name))
 
 
     def call_cell_eval(self, book, cell, code, _globals, res):
 
-        e = myexecutor.Executor()
+        e = codemach.Machine()
 
-        with sheets.context.context(book, sheets.context.Context.CELL):
+        with ws_sheets.context.context(book, ws_sheets.context.Context.CELL):
             #res.return_value = eval(code, _globals)
             res.return_value = e.exec(code, _globals)
 
     def call_script_exec(self, book, script, code, _globals, res):
 
-        e = myexecutor.Executor()
+        e = codemach.Machine()
         #e.verbose = 1
 
         def load_attr(thing, name):
             if thing is book:
                 if not name in ():
-                    raise sheets.exception.NotAllowedError(
+                    raise ws_sheets.exception.NotAllowedError(
                             "for security, get attribute {} of {} is forbidden".format(
                                 name, thing))
 
@@ -137,7 +137,7 @@ class SecurityTest1(object):
             name_split = name.split('.')
         
             if not name_split[0] in self.MODULES_APPROVED:
-                raise sheets.exception.NotAllowedError(
+                raise ws_sheets.exception.NotAllowedError(
                         "module '{}' is not allowed".format(name_split[0]))
 
         e.signal['LOAD_ATTR'].subscribe(book, load_attr)
@@ -145,7 +145,7 @@ class SecurityTest1(object):
         e.signal['CALL_FUNCTION'].subscribe(object.__getattribute__, call_function_getattr)
         e.signal['IMPORT_NAME'].subscribe(import_name)
 
-        with sheets.context.context(book, sheets.context.Context.CELL):
+        with ws_sheets.context.context(book, ws_sheets.context.Context.CELL):
             #exec(code, _globals)
             e.exec(code, _globals)
 

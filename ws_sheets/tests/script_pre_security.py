@@ -1,13 +1,13 @@
 import numpy
 import unittest
-
-import sheets
-import sheets.exception
-import sheets.tests.settings
+import modconf
+import ws_sheets
+import ws_sheets.exception
+import ws_sheets.tests.conf
 
 class ScriptPreSecurityTest(unittest.TestCase):
     def test_1(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
     
         b.set_script_pre('book.do_all')
         
@@ -20,7 +20,7 @@ class ScriptPreSecurityTest(unittest.TestCase):
         print(repr(b.script_pre.exec_exc.__class__))
         
         self.assertTrue(isinstance(b.script_pre.exec_exc,
-            sheets.exception.NotAllowedError))
+            ws_sheets.exception.NotAllowedError))
         
 
         b.set_script_pre('getattr(book,\'do_all\')')
@@ -34,7 +34,7 @@ class ScriptPreSecurityTest(unittest.TestCase):
         print(repr(b.script_pre.exec_exc.__class__))
         
         self.assertTrue(isinstance(b.script_pre.exec_exc,
-            sheets.exception.NotAllowedError))
+            ws_sheets.exception.NotAllowedError))
         
         
         b.set_script_pre('object.__getattribute__(book,\'do_all\')')
@@ -48,7 +48,7 @@ class ScriptPreSecurityTest(unittest.TestCase):
         print(repr(b.script_pre.exec_exc.__class__))
         
         self.assertTrue(isinstance(b.script_pre.exec_exc,
-            sheets.exception.NotAllowedError))
+            ws_sheets.exception.NotAllowedError))
         
         
 

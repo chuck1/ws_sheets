@@ -1,9 +1,9 @@
-
-import sheets
+import modconf
+import ws_sheets
 
 import unittest
 
-import sheets.tests.settings
+#import ws_sheets.tests.settings
 
 def code_analysis(code):
     print(code)
@@ -18,9 +18,12 @@ def code_analysis(code):
             print('    not allowed')
 
 class SecurityTest(unittest.TestCase):
+    
+    def setUp(self):
+        self.conf = modconf.import_conf('ws_sheets.tests.conf.simple')
 
     def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = ws_sheets.Book(self.conf.Settings)
         s = b['0']
 
         ########

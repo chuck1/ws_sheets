@@ -7,7 +7,7 @@ class Settings(object):
     """
     
     MIDDLEWARE_SECURITY = (
-            ('sheets.ext.middleware.security','SecurityTest1'),
+            ('ws_sheets.ext.middleware.security','SecurityTest1'),
             )
     
     MIDDLEWARE_SECURITY_MODULES_APPROVED = (

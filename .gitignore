@@ -10,3 +10,4 @@ build/
 docs/build/
 venv/
 package_index/
+dist/

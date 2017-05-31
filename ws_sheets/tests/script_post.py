@@ -1,13 +1,12 @@
 import numpy
 import unittest
 
-import sheets
-
-from sheets.tests import settings
+import ws_sheets
+import ws_sheets.tests.conf
 
 class ScriptPostTest(unittest.TestCase):
     def test(self):
-        b = sheets.Book(settings.Settings)
+        b = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
     
         b.set_script_pre('import math\na=math.pi')
 

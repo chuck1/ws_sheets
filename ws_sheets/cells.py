@@ -3,7 +3,7 @@ import traceback
 import sys
 import io
 
-import sheets.cell
+import ws_sheets.cell
 #import sheets.helper
 
 def cells_strings(cells):
@@ -23,7 +23,7 @@ def cells_values(cells, book, sheet):
 
 class Cells(object):
     def __init__(self):
-        self.cells = numpy.array([[sheets.cell.Cell(0, 0)]], dtype=object)
+        self.cells = numpy.array([[ws_sheets.cell.Cell(0, 0)]], dtype=object)
     
     def __getstate__(self):
         return dict((k, getattr(self, k)) for k in ['cells'])
@@ -63,7 +63,7 @@ class Cells(object):
         self.ensure_size(r, c)
 
         if self.cells[r,c] is None:
-            self.cells[r,c] = sheets.cell.Cell(r,c)
+            self.cells[r,c] = ws_sheets.cell.Cell(r,c)
 
         self.cells[r,c].set_string(sheet, s)
 

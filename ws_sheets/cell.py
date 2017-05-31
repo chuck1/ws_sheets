@@ -3,8 +3,7 @@ import traceback
 import sys
 import io
 
-#import sheets.helper
-import sheets.exception
+import ws_sheets.exception
 
 class RecursiveCellRef(Exception): pass
 
@@ -50,7 +49,7 @@ class Cell(object):
         Compile the string.
    
         The code object is inspected for possible security issues by the
-        :py:func:`sheets.cell.Cell.check_code` function.
+        :py:func:`ws_sheets.cell.Cell.check_code` function.
         """
         self.comp_exc = None
 
@@ -66,7 +65,7 @@ class Cell(object):
 
         try:
             sheet.book.middleware_security.call_check_cell_code(self)
-        except sheets.exception.NotAllowedError as e:
+        except ws_sheets.exception.NotAllowedError as e:
             self.code = None
             self.comp_exc = e
     

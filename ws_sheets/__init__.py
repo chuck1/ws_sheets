@@ -23,12 +23,11 @@ import fs.osfs
 import inspect
 import contextlib
 
-import sheets.cells
-import sheets.script
-#import sheets.helper
-import sheets.exception
-import sheets.context
-import sheets.middleware
+import ws_sheets.cells
+import ws_sheets.script
+import ws_sheets.exception
+import ws_sheets.context
+import ws_sheets.middleware
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +57,7 @@ class Protector(object):
 
 def protector1(f):
     def wrapper(book, *args):
-        if object.__getattribute__(book, 'context') != sheets.context.Context.NONE:
+        if object.__getattribute__(book, 'context') != ws_sheets.context.Context.NONE:
             object.__getattribute__(book, 'middleware_security').call_book_method_decorator(
                     book, f, args)
         return f(book, *args)
@@ -68,7 +67,7 @@ def protector1(f):
 def context_decorator(context):
     def wrapper(f):
         def wrapped(o, *args):
-            with sheets.context.context(book, context):
+            with ws_sheets.context.context(book, context):
                 return f(o, *args)
         return wrapped
     return wrapper
@@ -85,9 +84,9 @@ class Book(object):
     Book class
     """
     def __init__(self, settings=None):
-        self.context = sheets.context.Context.NONE
+        self.context = ws_sheets.context.Context.NONE
         
-        self.script_pre = sheets.script.Script(self)
+        self.script_pre = ws_sheets.script.Script(self)
         """
         ``Script`` object that runs before cell evalutation.
         It has access to cell strings.
@@ -96,7 +95,7 @@ class Book(object):
         by this script.
         """
 
-        self.script_post = sheets.script.Script(self)
+        self.script_post = ws_sheets.script.Script(self)
         """
         ``Script`` object that runs after cell evaluation.
         It has access to cell strings and values.
@@ -113,7 +112,7 @@ class Book(object):
         self.settings = settings
 
         # middleware
-        self.middleware_security = sheets.middleware.MiddlewareSecurityManager(
+        self.middleware_security = ws_sheets.middleware.MiddlewareSecurityManager(
                 self.settings.MIDDLEWARE_SECURITY)
 
         """
@@ -129,7 +128,7 @@ class Book(object):
 
     def __setstate__(self, state):
         self.__dict__.update(state)
-        self.context = sheets.context.Context.NONE
+        self.context = ws_sheets.context.Context.NONE
 
     #@protector1
     def __getattribute__(self, name):
@@ -163,7 +162,7 @@ class Book(object):
             self.do_all()
 
     def do_all(self):
-        assert(self.context == sheets.context.Context.NONE)
+        assert(self.context == ws_sheets.context.Context.NONE)
         self.reset_globals()
 
         self.script_pre.execute(self.glo)
@@ -173,7 +172,7 @@ class Book(object):
             s.reset_globals()
             s.cells.evaluate(self, s)
 
-        assert(self.context == sheets.context.Context.NONE)
+        assert(self.context == ws_sheets.context.Context.NONE)
         self.script_post.execute(self.glo)
 
     def set_cell(self, k, r, c, s):
@@ -194,7 +193,7 @@ class Book(object):
 class Sheet(object):
     def __init__(self, book):
         self.book = book
-        self.cells = sheets.cells.Cells()
+        self.cells = ws_sheets.cells.Cells()
         self.glo = None
 
     def __getstate__(self):
@@ -246,7 +245,7 @@ class Sheet(object):
     def __setitem__(self, args, string):
         def f(cell, s, r, c):
             if cell is None:
-                cell = sheets.cell.Cell(r, c)
+                cell = ws_sheets.cell.Cell(r, c)
                 self.cells.cells[r, c] = cell
             cell.set_string(self, s)
         

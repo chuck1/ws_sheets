@@ -1,23 +1,23 @@
 import numpy
 import unittest
 
-import sheets
-import sheets.exception
-import sheets.tests.settings
+import ws_sheets
+import ws_sheets.exception
+import ws_sheets.tests.conf.simple
 
 class SetScriptPreTest(unittest.TestCase):
     def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
     
         b.set_script_pre('import os')
         b.do_all()
         
-        #print('output')
-        #print(b.script_pre.output)
+        print('output')
+        print(b.script_pre.output)
 
         self.assertTrue(isinstance(
                 b.script_pre.exec_exc,
-                sheets.exception.NotAllowedError))
+                ws_sheets.exception.NotAllowedError))
     
         b.set_script_pre("a = 1\n")
     

@@ -7,7 +7,7 @@ import contextlib
 
 logger = logging.getLogger(__name__)
 
-import sheets.context
+import ws_sheets.context
 
 class Script(object):
     def __init__(self, book):
@@ -48,7 +48,7 @@ class Script(object):
 
         try:
             self.book.middleware_security.call_check_script_code(self)
-        except sheets.exception.NotAllowedError as e:
+        except ws_sheets.exception.NotAllowedError as e:
             self.code = None
             self.comp_exc = e
     
@@ -64,7 +64,7 @@ class Script(object):
             #traceback.print_exc()
             return e
         """
-        with sheets.context.context(self.book, sheets.context.Context.SCRIPT):
+        with ws_sheets.context.context(self.book, ws_sheets.context.Context.SCRIPT):
             try:
                 #exec(code, g)
                 self.book.middleware_security.call_script_exec(self.book, self, self.code, g)
@@ -76,7 +76,7 @@ class Script(object):
     def execute(self, g):
         logger.debug('script evaluate')
 
-        assert(self.book.context == sheets.context.Context.NONE)
+        assert(self.book.context == ws_sheets.context.Context.NONE)
 
         if not hasattr(self, "code"): self.comp()
 

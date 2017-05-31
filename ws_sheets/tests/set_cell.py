@@ -1,13 +1,15 @@
 import numpy
 import unittest
+import modconf
+import ws_sheets
 
-import sheets
-
-import sheets.tests.settings
 
 class CellTest(unittest.TestCase):
-    def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+    def setUp(self):
+        self.conf = modconf.import_conf('ws_sheets.tests.conf.simple')
+
+    def test1(self):
+        b = ws_sheets.Book(self.conf.Settings)
     
         b['0'][0, 0] = '2+2'
         self.assertEqual(b['0'][0, 0], 4)
@@ -36,9 +38,8 @@ class CellTest(unittest.TestCase):
         b['1'][0, 0] = 'book[\'0\'][0, 0]'
         self.assertEqual(b['1'][0, 0], 4)
     
-class CellTest2(object):
-    def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+    def test2(self):
+        b = ws_sheets.Book(self.conf.Settings)
 
         b.set_cell('0', 0, 0, '1')
         b.set_cell('0', 1, 0, '2')
