@@ -1,9 +1,6 @@
 *.pyc
 *.sqlite3
 secrets.json
-web_sheets_django/secrets.json
-geckodriver.log
-web_sheets_django/production/
 *.egg-info
 *.log
 build/
@@ -11,3 +8,4 @@ docs/build/
 venv/
 package_index/
 dist/
+
