@@ -1,4 +1,0 @@
-fs
-numpy
-modconf==0.3a1
-codemach==0.2a1

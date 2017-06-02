@@ -19,8 +19,8 @@ setup(name='ws_sheets',
         install_requires=[
             'fs',
             'numpy',
-            'modconf',
-            'codemach',
+            'modconf==0.3a2',
+            'codemach==0.2a1',
             ],
         zip_safe=False,
         )
