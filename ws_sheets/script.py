@@ -69,9 +69,16 @@ class Script(object):
                 #exec(code, g)
                 self.book.middleware_security.call_script_exec(self.book, self, self.code, g)
             except Exception as e:
-                print(e)
+                logger.debug(e)
+            
+                exc_string = traceback.format_exc().split('\n')
+            	#exc_string.pop(1)
+            	#exc_string.pop(1)
+                exc_string = "\n".join(exc_string)
                 #traceback.print_exc()
-                return e
+                return e, exc_string
+
+        return None, ''
 
     def execute(self, g):
         logger.debug('script evaluate')
@@ -106,16 +113,7 @@ class Script(object):
         """
 
         with contextlib.redirect_stdout(out):
-            self.exec_exc = self.execute1(g)
-
-        if self.exec_exc is None:
-            exc_string = ''
-        else:
-            exc_string = traceback.format_exc().split('\n')
-            #exc_string.pop(1)
-            #exc_string.pop(1)
-            exc_string = "\n".join(exc_string)
-        
+            self.exec_exc, exc_string = self.execute1(g)
 
         self.output = out.getvalue() + "".join(exc_string)
     
