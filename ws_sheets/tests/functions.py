@@ -1,7 +1,7 @@
 import numpy
 import unittest
 
-import sheets.tests.settings
+import ws_sheets.tests.conf.simple
 
 string_named_range = """
 def a():
@@ -72,7 +72,7 @@ class TestIndexof(unittest.TestCase):
         bp.set_cell('0', 0, 1, 'indexof(sheet[0:5, 0], 3)')
 
     def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = sheets.Book(ws_sheets.tests.conf.simple.Settings)
         self.setup(b)
 
         print('test indexof', b['0'][0, 1])
@@ -97,7 +97,7 @@ class TestLookup(unittest.TestCase):
         b.set_cell('0', 0, 2, """lookup('Sue', sheet[:, 0], sheet[:, 1])""")
     
     def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = sheets.Book(ws_sheets.tests.conf.simple.Settings)
         self.setup(b)
 
         print('test lookup', b['0'][0, 2])
@@ -120,7 +120,7 @@ class TestDatetime(unittest.TestCase):
         b.set_cell('0', 2, 1, "sheet[2, 0].item().tzinfo")
 
     def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = sheets.Book(ws_sheets.tests.conf.simple.Settings)
         self.setup(b)
 
         print('test datetime', b['0'][0, 0])
@@ -146,7 +146,7 @@ class TestStrings(unittest.TestCase):
     
     
     def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = sheets.Book(ws_sheets.tests.conf.simple.Settings)
         self.setup(b)
 
 class TestMath(unittest.TestCase):
@@ -202,7 +202,7 @@ y = 2
         b.set_cell('0', 14, 0, "x ** y")
     
     def test(self):
-        b = sheets.Book(sheets.tests.settings.Settings)
+        b = sheets.Book(ws_sheets.tests.conf.simple.Settings)
         self.setup(b)
         
 
