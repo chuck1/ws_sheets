@@ -2,8 +2,12 @@ import numpy
 import traceback
 import sys
 import io
-
+import logging
 import ws_sheets.exception
+
+
+logger = logging.getLogger(__name__)
+loggerCell = logging.getLogger(__name__+'/cell')
 
 class RecursiveCellRef(Exception): pass
 
@@ -98,7 +102,7 @@ class Cell(object):
         except Exception as e:
             #print("exception during cell({},{}) eval".format(self.r, self.c))
             #print(repr(e))
-            traceback.print_exc()
+            loggerCell.exception(e)
             
             self.exception_eval = e
 

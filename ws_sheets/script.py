@@ -6,6 +6,7 @@ import logging
 import contextlib
 
 logger = logging.getLogger(__name__)
+loggerScript = logging.getLogger(__name__+'/script')
 
 import ws_sheets.context
 
