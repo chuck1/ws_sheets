@@ -3,10 +3,6 @@ import unittest
 
 import ws_sheets.tests.conf.simple
 
-string_named_range = """
-def a():
-    return book['0'][0:2, 0]
-"""
 
 string_indexof = """
 import numpy
@@ -34,15 +30,29 @@ class TestBase(unittest.TestCase):
     def setUp(self):
         self.book = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
 
+    def setup(self, book):
+        pass
+
+    def test(self):
+        self.setup(self.book)
+
 class TestImport(unittest.TestCase):
     def setup(self, bp):
     
         bp.set_script_pre('import math\nprint(math)\n')
     
         bp.set_cell('0', 0, 0, 'math.pi')
-    
+
+    def test(self):
+        pass
+
 class TestNamedRange(unittest.TestCase):
     def setup(self, bp):
+
+        string_named_range = """
+def a():
+    return book['0'][0:2, 0]
+"""
     
         bp.set_script_pre(string_named_range)
     
@@ -50,6 +60,10 @@ class TestNamedRange(unittest.TestCase):
         bp.set_cell('0', 1, 0, '2')
         bp.set_cell('0', 2, 0, 'a()')
     
+    def test(self):
+        self.setup(self.book)
+        pass
+
 class TestSum(unittest.TestCase):
     def setup(self, bp):
     
@@ -61,6 +75,10 @@ class TestSum(unittest.TestCase):
     
         bp.set_cell('0', 0, 1, 'sum(sheet[0:5, 0])')
     
+    def test(self):
+        self.setup(self.book)
+        self.assertEqual(self.book['0'][0, 1], 15)
+
 class TestIndexof(TestBase):
     def setup(self, bp):
     
@@ -77,8 +95,8 @@ class TestIndexof(TestBase):
     def test(self):
         self.setup(self.book)
 
-        print('test indexof', b['0'][0, 1])
-        print('test indexof', b['0'].cells.cells[0, 1])
+        print('test indexof', self.book['0'][0, 1])
+        print('test indexof', self.book['0'].cells.cells[0, 1])
         print('test indexof', repr(b['0'].cells.cells[0, 1].value))
     
 class TestLookup(unittest.TestCase):
@@ -102,13 +120,13 @@ class TestLookup(unittest.TestCase):
     def test(self):
         self.setup(self.book)
 
-        print('test lookup', b['0'][0, 2])
-        print('test lookup', b['0'].cells.cells[0, 2])
-        print('test lookup', repr(b['0'].cells.cells[0, 2].value))
+        print('test lookup', self.book['0'][0, 2])
+        print('test lookup', self.book['0'].cells.cells[0, 2])
+        print('test lookup', repr(self.book['0'].cells.cells[0, 2].value))
 
         self.assertEqual(
                 numpy.array([['banana']]),
-                b['0'][0, 2])
+                self.bookb['0'][0, 2])
 
 class TestDatetime(unittest.TestCase):
     def setup(self, b):
@@ -124,12 +142,12 @@ class TestDatetime(unittest.TestCase):
     def test(self):
         self.setup(self.book)
 
-        print('test datetime', b['0'][0, 0])
-        print('test datetime', b['0'][0, 1])
-        print('test datetime', b['0'][1, 0])
-        print('test datetime', b['0'][1, 1])
-        print('test datetime', b['0'][2, 0])
-        print('test datetime', b['0'][2, 1])
+        print('test datetime', self.book['0'][0, 0])
+        print('test datetime', self.book['0'][0, 1])
+        print('test datetime', self.book['0'][1, 0])
+        print('test datetime', self.book['0'][1, 1])
+        print('test datetime', self.book['0'][2, 0])
+        print('test datetime', self.book['0'][2, 1])
 
 class TestStrings(unittest.TestCase):
     def setup(self, b):
@@ -144,10 +162,7 @@ class TestStrings(unittest.TestCase):
         b.set_cell('0', 0, 0, "s.lower()")
         b.set_cell('0', 1, 0, "s.upper()")
         b.set_cell('0', 2, 0, "s[16:19]")
-    
-    
-    def test(self):
-        self.setup(self.book)
+
 
 class TestMath(unittest.TestCase):
     def setup(self, b):

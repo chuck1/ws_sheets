@@ -184,7 +184,6 @@ class Book(object):
         
         self.do_all()
 
-    @protector1
     def __getitem__(self, key):
         if not key in self.sheets:
             self.sheets[key] = Sheet(self)
