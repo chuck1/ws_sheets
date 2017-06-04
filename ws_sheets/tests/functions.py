@@ -1,5 +1,6 @@
 import numpy
 import unittest
+import collections
 
 import ws_sheets.tests.conf.simple
 
@@ -36,35 +37,34 @@ class TestBase(unittest.TestCase):
     def test(self):
         self.setup(self.book)
 
-class TestImport(unittest.TestCase):
+class TestImport(TestBase):
     def setup(self, bp):
     
         bp.set_script_pre('import math\nprint(math)\n')
     
         bp.set_cell('0', 0, 0, 'math.pi')
 
-    def test(self):
-        pass
-
-class TestNamedRange(unittest.TestCase):
-    def setup(self, bp):
+class TestNamedRange(TestBase):
+    def setup(self, book):
 
         string_named_range = """
 def a():
     return book['0'][0:2, 0]
 """
     
-        bp.set_script_pre(string_named_range)
+        book.set_script_pre(string_named_range)
     
-        bp.set_cell('0', 0, 0, '1')
-        bp.set_cell('0', 1, 0, '2')
-        bp.set_cell('0', 2, 0, 'a()')
+        book.set_cell('0', 0, 0, '1')
+        book.set_cell('0', 1, 0, '2')
+        book.set_cell('0', 2, 0, 'a()')
     
     def test(self):
         self.setup(self.book)
-        pass
 
-class TestSum(unittest.TestCase):
+        print(self.book['0'][2, 0])
+
+
+class TestSum(TestBase):
     def setup(self, bp):
     
         bp.set_cell('0', 0, 0, '1')
@@ -149,7 +149,7 @@ class TestDatetime(unittest.TestCase):
         print('test datetime', self.book['0'][2, 0])
         print('test datetime', self.book['0'][2, 1])
 
-class TestStrings(unittest.TestCase):
+class TestStrings(TestBase):
     def setup(self, b):
         b.set_docs("""
 `python str documentation`_
@@ -164,7 +164,7 @@ class TestStrings(unittest.TestCase):
         b.set_cell('0', 2, 0, "s[16:19]")
 
 
-class TestMath(unittest.TestCase):
+class TestMath(TestBase):
     def setup(self, b):
         b.set_docs("""
 `python standard library: math`__
@@ -185,7 +185,7 @@ import math
         b.set_cell('0', 4, 0, "math.pow(2, 2)")
         b.set_cell('0', 5, 0, "math.exp(1)")
 
-class TestNumericalTypes(unittest.TestCase):
+class TestNumericalTypes(TestBase):
     def setup(self, b):
         b.set_docs("""
 `python numerical types`__
@@ -219,17 +219,17 @@ y = 2
     def test(self):
         self.setup(self.book)
         
-DEMOS = {
-            'import': TestImport,
-            'named_range': TestNamedRange,
-            'sum': TestSum,
-            'indexof': TestIndexof,
-            'lookup': TestLookup,
-            'datetime': TestDatetime,
-            'string': TestStrings,
-            'math': TestMath,
-            'numericaltypes': TestNumericalTypes,
-            }
+DEMOS = collections.OrderedDict((
+            ('named_range', TestNamedRange),
+            ('import', TestImport),
+            ('sum', TestSum),
+            ('indexof', TestIndexof),
+            ('lookup', TestLookup),
+            ('datetime', TestDatetime),
+            ('string', TestStrings),
+            ('math', TestMath),
+            ('numericaltypes', TestNumericalTypes),
+            ))
 
 
 
