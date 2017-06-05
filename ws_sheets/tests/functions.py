@@ -96,8 +96,8 @@ class TestIndexof(TestBase):
         self.setup(self.book)
 
         print('test indexof', self.book['0'][0, 1])
-        print('test indexof', self.book['0'].cells.cells[0, 1])
-        print('test indexof', repr(b['0'].cells.cells[0, 1].value))
+        #print('test indexof', self.book['0'].cells.cells[0, 1])
+        #print('test indexof', repr(b['0'].cells.cells[0, 1].value))
     
 class TestLookup(unittest.TestCase):
 
@@ -121,12 +121,12 @@ class TestLookup(unittest.TestCase):
         self.setup(self.book)
 
         print('test lookup', self.book['0'][0, 2])
-        print('test lookup', self.book['0'].cells.cells[0, 2])
-        print('test lookup', repr(self.book['0'].cells.cells[0, 2].value))
+        #print('test lookup', self.book['0'].cells.cells[0, 2])
+        #print('test lookup', repr(self.book['0'].cells.cells[0, 2].value))
 
         self.assertEqual(
                 numpy.array([['banana']]),
-                self.bookb['0'][0, 2])
+                self.book['0'][0, 2])
 
 class TestDatetime(unittest.TestCase):
     def setup(self, b):
