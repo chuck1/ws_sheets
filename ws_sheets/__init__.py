@@ -129,6 +129,12 @@ class Book(object):
     def __setstate__(self, state):
         self.__dict__.update(state)
         self.context = ws_sheets.context.Context.NONE
+        self.middleware_security = ws_sheets.middleware.MiddlewareSecurityManager(
+                self.settings.MIDDLEWARE_SECURITY)
+        self.script_pre.book = self
+        self.script_post.book = self
+        for sheet in self.sheets.values():
+            sheet.book = self
 
     #@protector1
     def __getattribute__(self, name):
