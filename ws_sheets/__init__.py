@@ -168,7 +168,10 @@ class Book(object):
             self.do_all()
 
     def do_all(self):
+        logger.debug('{} do_all'.format(type(self)))
+        
         assert(self.context == ws_sheets.context.Context.NONE)
+        
         self.reset_globals()
 
         self.script_pre.execute(self.glo)
