@@ -37,6 +37,9 @@ class TestBase(unittest.TestCase):
     def test(self):
         self.setup(self.book)
 
+    def _test_selenium(driver):
+        pass
+
 class TestImport(TestBase):
     def setup(self, bp):
     
@@ -99,7 +102,7 @@ class TestIndexof(TestBase):
         #print('test indexof', self.book['0'].cells.cells[0, 1])
         #print('test indexof', repr(b['0'].cells.cells[0, 1].value))
     
-class TestLookup(unittest.TestCase):
+class TestLookup(TestBase):
 
     def setup(self, b):
     
@@ -128,7 +131,7 @@ class TestLookup(unittest.TestCase):
                 numpy.array([['banana']]),
                 self.book['0'][0, 2])
 
-class TestDatetime(unittest.TestCase):
+class TestDatetime(TestBase):
     def setup(self, b):
         b.set_script_pre(string_datetime)
     
