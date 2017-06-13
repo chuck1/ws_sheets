@@ -23,10 +23,6 @@ import datetime
 import pytz
 """
 
-string_strings = """
-s = "The quick brown fox jumps over the lazy dog"
-"""
-
 class TestBase(unittest.TestCase):
     def setUp(self):
         self.book = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
@@ -41,19 +37,18 @@ class TestBase(unittest.TestCase):
         pass
 
 class TestImport(TestBase):
-    def setup(self, bp):
+    def setup(self, b):
     
-        bp.set_script_pre('import math\nprint(math)\n')
+        b.set_script_pre('import math\nprint(math)\n')
     
-        bp.set_cell('0', 0, 0, 'math.pi')
+        b.set_cell('0', 0, 0, 'math.pi')
+
+        print(b['0'][0, 0])
 
 class TestNamedRange(TestBase):
     def setup(self, book):
 
-        string_named_range = """
-def a():
-    return book['0'][0:2, 0]
-"""
+        string_named_range = "def a():\n  return book['0'][0:2, 0]"
     
         book.set_script_pre(string_named_range)
     
@@ -65,7 +60,6 @@ def a():
         self.setup(self.book)
 
         print(self.book['0'][2, 0])
-
 
 class TestSum(TestBase):
     def setup(self, bp):
@@ -99,8 +93,6 @@ class TestIndexof(TestBase):
         self.setup(self.book)
 
         print('test indexof', self.book['0'][0, 1])
-        #print('test indexof', self.book['0'].cells.cells[0, 1])
-        #print('test indexof', repr(b['0'].cells.cells[0, 1].value))
     
 class TestLookup(TestBase):
 
@@ -124,8 +116,6 @@ class TestLookup(TestBase):
         self.setup(self.book)
 
         print('test lookup', self.book['0'][0, 2])
-        #print('test lookup', self.book['0'].cells.cells[0, 2])
-        #print('test lookup', repr(self.book['0'].cells.cells[0, 2].value))
 
         self.assertEqual(
                 numpy.array([['banana']]),
@@ -160,12 +150,18 @@ class TestStrings(TestBase):
 .. _`python str documentation`: https://docs.python.org/3.6/library/stdtypes.html#text-sequence-type-str
 """)
 
-        b.set_script_pre(string_strings)
+        b.set_script_pre("s = 'The quick brown fox jumps over the lazy dog'")
 
         b.set_cell('0', 0, 0, "s.lower()")
         b.set_cell('0', 1, 0, "s.upper()")
         b.set_cell('0', 2, 0, "s[16:19]")
 
+    def test(self):
+        self.setup(self.book)
+
+        print('test strings', self.book['0'][0, 0])
+        print('test strings', self.book['0'][1, 0])
+        print('test strings', self.book['0'][2, 0])
 
 class TestMath(TestBase):
     def setup(self, b):
