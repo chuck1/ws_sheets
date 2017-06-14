@@ -13,28 +13,38 @@ import ws_sheets.context
 class Script(object):
     def __init__(self, book):
         self.book = book
-        self.string = ""
+        self.__string = ""
         self.output = ""
     
     def __getstate__(self):
-        return dict((k, getattr(self, k)) for k in ["string"])
-    
+        state = {'string': self.__string}
+        #return dict((k, getattr(self, k)) for k in ["__string"])
+        return state
+    	
+    def __setstate__(self, state):
+        self.__string = state['string']
+
     def set_string(self,s):
-        logger.debug('\n' + '-'*10 + '\n' + self.string + '\n' + '-'*10+ ' \n' + s)
+        logger.debug('\n' + '-'*10 + '\n' + self.__string + '\n' + '-'*10+ ' \n' + s)
         
-        if s == self.string:
+        if s == self.__string:
             logger.debug('script string unchanged')
             return False
         
         logger.debug('script string changed')
         
-        self.string = s
+        self.__string = s
         self.comp()
         return True
 
+    def get_string(self):
+        return self.__string    
+
     def comp(self):
+        logger.debug('{} compile'.format(self.__class__.__name__))
+	
         try:
-            self.code = compile(self.string, '<script>', 'exec')
+            self.code = compile(self.__string, '<script>', 'exec')
         except Exception as e:
             self.code = None
             self.comp_exc = e
@@ -117,6 +127,9 @@ class Script(object):
             self.exec_exc, exc_string = self.execute1(g)
 
         self.output = out.getvalue() + "".join(exc_string)
+
+        logger.debug('string = {}'.format(repr(self.__string)))
+        logger.debug('output = {}'.format(repr(self.output)))
     
     def jkhkjfskaf():
         # inspect the cells global

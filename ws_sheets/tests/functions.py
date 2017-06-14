@@ -5,23 +5,10 @@ import collections
 import ws_sheets.tests.conf.simple
 
 
-string_indexof = """
-import numpy
-def indexof(arr, a):
-    i = numpy.argwhere(arr == a)
-    return i
-"""
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
-string_lookup = """
-import numpy
-def lookup(a, b, c):
-    return c[numpy.argwhere(b == a)]
-"""
-
-string_datetime = """
-import datetime
-import pytz
-"""
 
 class TestBase(unittest.TestCase):
     def setUp(self):
@@ -33,17 +20,28 @@ class TestBase(unittest.TestCase):
     def test(self):
         self.setup(self.book)
 
-    def _test_selenium(driver):
-        pass
+    def _test_selenium(self, driver):
+        print('wait for page to load')
+        WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, 
+                    '//table[@class="htCore"]')))
+
+class TestAddRowAndColumn(TestBase):
+    def setup(self, b):
+        print(b.__class__)
+        print(b['0'].__class__)
+        b['0'].add_column(None)
+        b['0'].add_row(None)
+        b['0'].add_column(0)
+        b['0'].add_row(0)
 
 class TestImport(TestBase):
     def setup(self, b):
-    
         b.set_script_pre('import math\nprint(math)\n')
-    
         b.set_cell('0', 0, 0, 'math.pi')
-
-        print(b['0'][0, 0])
+    def test(self):
+        self.setup(self.book)
+        print(self.book['0'][0, 0])
 
 class TestNamedRange(TestBase):
     def setup(self, book):
@@ -79,7 +77,7 @@ class TestSum(TestBase):
 class TestIndexof(TestBase):
     def setup(self, bp):
     
-        bp.set_script_pre(string_indexof)
+        bp.set_script_pre("import numpy\ndef indexof(arr, a):\n  i = numpy.argwhere(arr == a)\n  return i")
     
         bp.set_cell('0', 0, 0, '1')
         bp.set_cell('0', 1, 0, '2')
@@ -98,7 +96,7 @@ class TestLookup(TestBase):
 
     def setup(self, b):
     
-        b.set_script_pre(string_lookup)
+        b.set_script_pre("import numpy\ndef lookup(a, b, c):\n  return c[numpy.argwhere(b == a)]")
     
         b.set_cell('0', 0, 0, "'Bob'")
         b.set_cell('0', 1, 0, "'Sue'")
@@ -123,7 +121,7 @@ class TestLookup(TestBase):
 
 class TestDatetime(TestBase):
     def setup(self, b):
-        b.set_script_pre(string_datetime)
+        b.set_script_pre("import datetime\nimport pytz")
     
         b.set_cell('0', 0, 0, "datetime.datetime.now()")
         b.set_cell('0', 0, 1, "sheet[0, 0].item().tzinfo")
@@ -219,6 +217,7 @@ y = 2
         self.setup(self.book)
         
 DEMOS = collections.OrderedDict((
+            ('add_row_and_column', TestAddRowAndColumn),
             ('named_range', TestNamedRange),
             ('import', TestImport),
             ('sum', TestSum),

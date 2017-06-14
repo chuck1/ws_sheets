@@ -1,7 +1,11 @@
+import logging
+
 import codemach
 
 import ws_sheets.exception
 import ws_sheets.middleware
+
+logger = logging.getLogger(__name__)
 
 class SecurityTest1(object):
     def call_book_globals(self, book, res):
@@ -119,6 +123,7 @@ class SecurityTest1(object):
             res.return_value = e.exec(code, _globals)
 
     def call_script_exec(self, book, script, code, _globals, res):
+        logger.debug('{} call_script_exec'.format(self.__class__.__name__))
 
         e = codemach.Machine()
         #e.verbose = 1
