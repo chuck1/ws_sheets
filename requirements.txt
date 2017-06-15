@@ -1,4 +1,4 @@
 fs
 numpy
-modconf==0.3a3
+modconf==0.3a5
 codemach==0.2a2
