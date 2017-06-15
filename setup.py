@@ -3,6 +3,9 @@ from setuptools import setup
 
 version = open('VERSION.txt').read()
 
+with open('requirements.txt') as f:
+    req = [s.strip() for s in f.readlines()]
+
 setup(name='ws_sheets',
         version=version,
         description='python spreadsheets',
@@ -16,12 +19,7 @@ setup(name='ws_sheets',
             'ws_sheets.tests.conf',
             'ws_sheets.ext.middleware',
             ],
-        install_requires=[
-            'fs',
-            'numpy',
-            'modconf==0.3a2',
-            'codemach==0.2a1',
-            ],
         zip_safe=False,
+        install_requires=req,
         )
 
