@@ -1,4 +1,0 @@
-fs
-numpy
-modconf=={{ modconf }}
-codemach=={{ codemach }}

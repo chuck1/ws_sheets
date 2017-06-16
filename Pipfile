@@ -1,0 +1,9 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[packages]
+fs = "*"
+numpy = "*"
+modconf = "==0.3a5"
+codemach = "==0.2a2"

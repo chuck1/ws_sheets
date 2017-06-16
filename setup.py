@@ -1,10 +1,8 @@
-import os
+import re
 from setuptools import setup
 
-version = open('VERSION.txt').read()
-
-with open('requirements.txt') as f:
-    req = [s.strip() for s in f.readlines()]
+with open('ws_sheets/__init__.py') as f:
+    version = re.findall("^__version__ = '(.*)'", f.read())[0]
 
 setup(name='ws_sheets',
         version=version,
@@ -20,6 +18,5 @@ setup(name='ws_sheets',
             'ws_sheets.ext.middleware',
             ],
         zip_safe=False,
-        install_requires=req,
         )
 

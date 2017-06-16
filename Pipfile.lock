@@ -1,0 +1,41 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "30f68cb8361b001b965683e4cb1c042d950c778c62942234eec6ab3d02c63bbd"
+        },
+        "requires": {},
+        "sources": [
+            {
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "appdirs": {
+            "version": "==1.4.3"
+        },
+        "codemach": {
+            "version": "==0.2a2"
+        },
+        "fs": {
+            "version": "==2.0.4"
+        },
+        "modconf": {
+            "version": "==0.3a5"
+        },
+        "numpy": {
+            "version": "==1.13.0"
+        },
+        "pytz": {
+            "version": "==2017.2"
+        },
+        "setuptools": {
+            "version": "==36.0.1"
+        },
+        "six": {
+            "version": "==1.10.0"
+        }
+    },
+    "develop": {}
+}
