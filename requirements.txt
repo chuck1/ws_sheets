@@ -20,3 +20,4 @@ snowballstemmer==1.2.1
 Sphinx==1.6.2
 sphinxcontrib-websupport==1.0.1
 urllib3==1.21.1
+-e git+git@github.com:chuck1/ws_sheets@944c66e57752e689cdce802d9c8d40c4ffc18d4e#egg=ws_sheets&subdirectory=../../ws_sheets

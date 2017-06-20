@@ -2,11 +2,12 @@
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 
+[dev-packages]
+Sphinx = "*"
+
 [packages]
 fs = "*"
 numpy = "*"
 modconf = "==0.3a5"
 codemach = "==0.2a2"
-
-[dev-packages]
-Sphinx = "*"
+"-e ." = "*"
