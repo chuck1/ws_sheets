@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "30f68cb8361b001b965683e4cb1c042d950c778c62942234eec6ab3d02c63bbd"
+            "sha256": "e4964bc8f9e6916a2e305f5fdadfc7b0deb2d842ea6dbf2af46ae0e02de1b5f2"
         },
         "requires": {},
         "sources": [
@@ -37,5 +37,60 @@
             "version": "==1.10.0"
         }
     },
-    "develop": {}
+    "develop": {
+        "alabaster": {
+            "version": "==0.7.10"
+        },
+        "babel": {
+            "version": "==2.4.0"
+        },
+        "certifi": {
+            "version": "==2017.4.17"
+        },
+        "chardet": {
+            "version": "==3.0.4"
+        },
+        "docutils": {
+            "version": "==0.13.1"
+        },
+        "idna": {
+            "version": "==2.5"
+        },
+        "imagesize": {
+            "version": "==0.7.1"
+        },
+        "jinja2": {
+            "version": "==2.9.6"
+        },
+        "markupsafe": {
+            "version": "==1.0"
+        },
+        "pygments": {
+            "version": "==2.2.0"
+        },
+        "pytz": {
+            "version": "==2017.2"
+        },
+        "requests": {
+            "version": "==2.18.1"
+        },
+        "setuptools": {
+            "version": "==36.0.1"
+        },
+        "six": {
+            "version": "==1.10.0"
+        },
+        "snowballstemmer": {
+            "version": "==1.2.1"
+        },
+        "sphinx": {
+            "version": "==1.6.2"
+        },
+        "sphinxcontrib-websupport": {
+            "version": "==1.0.1"
+        },
+        "urllib3": {
+            "version": "==1.21.1"
+        }
+    }
 }
