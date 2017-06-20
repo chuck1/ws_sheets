@@ -1,23 +1,7 @@
-alabaster==0.7.10
 appdirs==1.4.3
-Babel==2.4.0
-certifi==2017.4.17
-chardet==3.0.4
-codemach==0.2a2
-docutils==0.13.1
+codemach==0.2
 fs==2.0.4
-idna==2.5
-imagesize==0.7.1
-Jinja2==2.9.6
-MarkupSafe==1.0
 modconf==0.3a5
 numpy==1.13.0
-Pygments==2.2.0
 pytz==2017.2
-requests==2.18.1
 six==1.10.0
-snowballstemmer==1.2.1
-Sphinx==1.6.2
-sphinxcontrib-websupport==1.0.1
-urllib3==1.21.1
--e git+git@github.com:chuck1/ws_sheets@944c66e57752e689cdce802d9c8d40c4ffc18d4e#egg=ws_sheets&subdirectory=../../ws_sheets
