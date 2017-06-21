@@ -8,6 +8,6 @@ Sphinx = "*"
 [packages]
 fs = "*"
 numpy = "*"
-modconf = "==0.2"
+modconf = "==0.3"
 codemach = "==0.2"
 "-e ." = "*"
