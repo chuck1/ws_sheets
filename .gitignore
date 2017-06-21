@@ -9,3 +9,4 @@ venv/
 package_index/
 dist/
 _build/
+*.whl
