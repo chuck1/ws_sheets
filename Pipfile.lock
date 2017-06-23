@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ecfe90049181309cb11a529695eb18f4e2a735794239e6ebe230342f2956e1ed"
+            "sha256": "ee814ca5eb05223b6301afa813a1e9eb50a33b20d40f0ac56e97a2f2d3f2c177"
         },
         "requires": {},
         "sources": [
@@ -17,13 +17,10 @@
             "version": "==1.4.3"
         },
         "codemach": {
-            "version": "==0.2"
+            "version": "==0.3b1"
         },
         "fs": {
             "version": "==2.0.4"
-        },
-        "modconf": {
-            "version": "==0.3a5"
         },
         "numpy": {
             "version": "==1.13.0"
@@ -36,9 +33,14 @@
         },
         "six": {
             "version": "==1.10.0"
+        },
+        "toml": {
+            "version": "==0.9.2"
         }
     },
     "develop": {
+        "-e ../codemach": "*",
+        "-e ../pkgtool": "*",
         "alabaster": {
             "version": "==0.7.10"
         },

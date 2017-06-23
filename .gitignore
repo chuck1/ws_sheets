@@ -10,3 +10,4 @@ package_index/
 dist/
 _build/
 *.whl
+requirements.txt
