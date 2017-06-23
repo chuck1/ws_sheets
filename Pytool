@@ -1,12 +1,12 @@
-name = 'ws_sheets'
+name = 'ws-sheets'
 description = 'python spreadsheets'
 url = 'http://github.com/chuck1/ws_sheets'
 author = 'Charles Rymal'
 author_email = 'charlesrymal@gmail.com'
 license = 'MIT'
 packages = [
-	'ws_sheets',
-	'ws_sheets.tests',
-	'ws_sheets.tests.conf',
-	'ws_sheets.ext.middleware',
+	'ws-sheets',
+	'ws-sheets.tests',
+	'ws-sheets.tests.conf',
+	'ws-sheets.ext.middleware',
 ]
