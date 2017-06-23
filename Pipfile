@@ -2,15 +2,15 @@
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 
+[packages]
+fs = "*"
+numpy = "*"
+modconf = "==0.3.0b0"
+"-e ." = "*"
+"-e ../pkgtool" = "*"
+pkgtool = "==0.1b5"
+
 [dev-packages]
 Sphinx = "*"
 pkgtool = "*"
 "-e ../codemach" = "*"
-
-[packages]
-fs = "*"
-numpy = "*"
-modconf = "==0.3"
-"-e ." = "*"
-"-e ../pkgtool" = "*"
-pkgtool = "==0.1b5"
