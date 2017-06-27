@@ -6,6 +6,7 @@ verify_ssl = true
 Sphinx = "*"
 "-e ../codemach" = "*"
 "-e ../modconf" = "*"
+"-e ." = "*"
 
 [packages]
 fs = "*"
