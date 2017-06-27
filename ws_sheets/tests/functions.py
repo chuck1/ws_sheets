@@ -5,10 +5,6 @@ import collections
 import ws_sheets.tests.conf.simple
 
 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-
 
 class TestBase(unittest.TestCase):
     def setUp(self):
@@ -20,7 +16,14 @@ class TestBase(unittest.TestCase):
     def test(self):
         self.setup(self.book)
 
+    async def atest(self):
+        self.setup(self.book)
+
     def _test_selenium(self, driver):
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+        from selenium.webdriver.common.by import By
+
         print('wait for page to load')
         WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, 
@@ -57,7 +60,12 @@ class TestNamedRange(TestBase):
     def test(self):
         self.setup(self.book)
 
-        print(self.book['0'][2, 0])
+        print(self.book['0'].getitem((2, 0)))
+
+    async def atest(self):
+        self.setup(self.book)
+
+        print(await self.book['0'].getitem((2, 0)))
 
 class TestSum(TestBase):
     def setup(self, bp):

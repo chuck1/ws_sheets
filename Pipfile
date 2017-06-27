@@ -11,5 +11,4 @@ codemach = ">=0.3b1"
 [dev-packages]
 Sphinx = "*"
 "-e ../codemach" = "*"
-"-e ../pkgtool" = "*"
 "-e ../modconf" = "*"
