@@ -7,6 +7,7 @@ fs = "*"
 numpy = "*"
 "-e ." = "*"
 codemach = ">=0.3b1"
+modconf = ">=0.3.0b2"
 
 [dev-packages]
 Sphinx = "*"
