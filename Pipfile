@@ -7,7 +7,7 @@ fs = "*"
 numpy = "*"
 "-e ." = "*"
 codemach = ">=0.3b13"
-modconf = ">=0.3.0b8"
+modconf = ">=0.3.0b9"
 pkgtool = "==0.1b45"
 
 [dev-packages]
