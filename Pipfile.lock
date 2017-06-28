@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2c98cec003d1dc0dcd5467334bc9c4063b1a58becf850184f79fcf1ec7419c10"
+            "sha256": "e54bfcd991e5a7654773780933b83f09a528ac52325e8b5a33027bc6808dba62"
         },
         "requires": {},
         "sources": [
@@ -17,7 +17,7 @@
             "version": "==1.4.3"
         },
         "codemach": {
-            "version": "==0.3b4"
+            "version": "==0.3b5"
         },
         "fs": {
             "version": "==2.0.4"
@@ -30,6 +30,12 @@
         },
         "pkgtool": {
             "version": "==0.1b23"
+        },
+        "py": {
+            "version": "==1.4.34"
+        },
+        "pytest": {
+            "version": "==3.1.2"
         },
         "pytz": {
             "version": "==2017.2"
@@ -48,6 +54,7 @@
         }
     },
     "develop": {
+        "-e .": "*",
         "-e ../codemach": "*",
         "-e ../modconf": "*",
         "alabaster": {
