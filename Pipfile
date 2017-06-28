@@ -2,6 +2,12 @@
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 
+[dev-packages]
+Sphinx = "*"
+"-e ../codemach" = "*"
+"-e ../modconf" = "*"
+"-e ." = "*"
+
 [packages]
 fs = "*"
 numpy = "*"
@@ -9,9 +15,3 @@ numpy = "*"
 codemach = ">=0.3b14"
 modconf = ">=0.3.0b9"
 pkgtool = "==0.1b45"
-
-[dev-packages]
-Sphinx = "*"
-"-e ../codemach" = "*"
-"-e ../modconf" = "*"
-"-e ." = "*"

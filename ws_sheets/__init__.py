@@ -1,4 +1,4 @@
-__version__ = '0.4.3b10'
+__version__ = '0.4.3b11'
 
 """
 Security
