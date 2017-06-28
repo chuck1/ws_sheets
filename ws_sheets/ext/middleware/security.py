@@ -66,16 +66,9 @@ class SecurityTest1(object):
     def call_book_method_decorator(self, book, f, args):
         return
         
-        """
-        print('protector')
-        print(f)
-        print(args)
-        """
-        
         context = object.__getattribute__(book, 'context')
 
         if f.__name__ == '__getattribute__':
-            #print("{}({}) {}".format(f.__name__, args, context))
             if not args[0] in ['__getitem__', 'sheets']:
                 raise ws_sheets.exception.NotAllowedError(
                         "stopped by protector in context {}. {}({})".format(
