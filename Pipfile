@@ -8,6 +8,7 @@ numpy = "*"
 "-e ." = "*"
 codemach = ">=0.3b10"
 modconf = ">=0.3.0b6"
+pkgtool = "*"
 
 [dev-packages]
 Sphinx = "*"
