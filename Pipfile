@@ -6,7 +6,7 @@ verify_ssl = true
 fs = "*"
 numpy = "*"
 "-e ." = "*"
-codemach = ">=0.3b4"
+codemach = ">=0.3b5"
 modconf = ">=0.3.0b3"
 
 [dev-packages]
