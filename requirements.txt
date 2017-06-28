@@ -3,7 +3,7 @@ codemach==0.3b5
 fs==2.0.4
 modconf==0.3
 numpy==1.13.0
-pkgtool==0.1b23
+pkgtool==0.1b38
 py==1.4.34
 pytest==3.1.2
 pytz==2017.2

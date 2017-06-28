@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8f654ac5bf39da99456bbc57ffc15cb1fde9a97de8d77d5a7b1fd83fcc500953"
+            "sha256": "37ccd8e8c8c8eb3f6372094c6140683d74cd28c3d5525a84f762ed15313944ef"
         },
         "requires": {},
         "sources": [
@@ -16,7 +16,9 @@
         "appdirs": {
             "version": "==1.4.3"
         },
-        "codemach": ">=0.3b6",
+        "codemach": {
+            "version": "==0.3b10"
+        },
         "fs": {
             "version": "==2.0.4"
         },
@@ -26,6 +28,15 @@
         "numpy": {
             "version": "==1.13.0"
         },
+        "pkgtool": {
+            "version": "==0.1b38"
+        },
+        "py": {
+            "version": "==1.4.34"
+        },
+        "pytest": {
+            "version": "==3.1.2"
+        },
         "pytz": {
             "version": "==2017.2"
         },
@@ -34,6 +45,12 @@
         },
         "six": {
             "version": "==1.10.0"
+        },
+        "termcolor": {
+            "version": "==1.1.0"
+        },
+        "toml": {
+            "version": "==0.9.2"
         }
     },
     "develop": {
