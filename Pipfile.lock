@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "21b4d259f9cea669d0b0a8c1474d0810d1ced6b87d70578bda9f7d11723e8cb4"
+            "sha256": "f890d9bae55e9ed63887c8fd708ba8b3c84f9d96d23c23506c7480ee571b13b6"
         },
         "requires": {},
         "sources": [
@@ -17,7 +17,7 @@
             "version": "==1.4.3"
         },
         "codemach": {
-            "version": "==0.3b10"
+            "version": "==0.3b13"
         },
         "fs": {
             "version": "==2.0.4"
@@ -29,7 +29,7 @@
             "version": "==1.13.0"
         },
         "pkgtool": {
-            "version": "==0.1b41"
+            "version": "==0.1b45"
         },
         "py": {
             "version": "==1.4.34"
