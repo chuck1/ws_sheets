@@ -249,6 +249,9 @@ class Sheet(object):
         a = numpy.vectorize(f, otypes=[object])(self.cells.cells.__getitem__(args))
         return a
 
+    def getitem(self, args):
+        return self.array_values(*args)
+
     def __getitem__(self, args):
         return self.array_values(*args)
 

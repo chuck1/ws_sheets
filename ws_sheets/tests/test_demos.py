@@ -60,7 +60,7 @@ class TestNamedRange(TestBase):
     def test(self):
         self.setup(self.book)
 
-        print(self.book['0'].getitem((2, 0)))
+        print(self.book['0'][2, 0])
 
     async def atest(self):
         self.setup(self.book)

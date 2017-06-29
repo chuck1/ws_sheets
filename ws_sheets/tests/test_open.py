@@ -1,12 +1,10 @@
 
-import sheets
+import ws_sheets
 
-import unittest
+class TestOpen:
 
-class BuiltinOpenTest(unittest.TestCase):
-
-    def test_helper(self):
-        b = sheets.Book()
+    def test_helper(self, settings):
+        b = ws_sheets.Book(settings)
         
         s = b.sheets['0']
         

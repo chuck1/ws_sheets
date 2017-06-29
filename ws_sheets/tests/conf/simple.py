@@ -1,5 +1,5 @@
 
-class Settings(object):
+class Settings:
     """
     these config variables must be stored in a class because I want
     to pickle the Book.settings variable with the book and
