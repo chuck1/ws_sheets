@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "699deb9f10ab8e98ee78869d6850e3fc0e2d5f07263dbe9dcf300fcca5d14df5"
+            "sha256": "725f460d9e9598da0fd8c676724e8686da8fd830bd38225af35c017e29838542"
         },
         "requires": {},
         "sources": [
@@ -51,9 +51,7 @@
         "markupsafe": {
             "version": "==1.0"
         },
-        "modconf": {
-            "version": "==0.3"
-        },
+        "modconf": "==0.3.0",
         "numpy": {
             "version": "==1.13.0"
         },
@@ -134,8 +132,14 @@
         "markupsafe": {
             "version": "==1.0"
         },
+        "py": {
+            "version": "==1.4.34"
+        },
         "pygments": {
             "version": "==2.2.0"
+        },
+        "pytest": {
+            "version": "==3.1.2"
         },
         "pytz": {
             "version": "==2017.2"

@@ -7,10 +7,11 @@ Sphinx = "*"
 "-e ../codemach" = "*"
 "-e ../modconf" = "*"
 "-e ." = "*"
+pytest = "*"
 
 [packages]
 fs = "*"
 numpy = "*"
-modconf = ">=0.3.0b9"
+modconf = "==0.3.0"
 pkgtool = "==0.1b52"
-codemach = "*"
+codemach = "==0.3"
