@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c4fa597557833b4f6bd7862a9f6ef4cbb06f7728945a05c0d2f5a77dd3795f1e"
+            "sha256": "b21a0e4506b1b965e820041c26bace9308e7f9f31a4af185caef7c547e5e21d1"
         },
         "requires": {},
         "sources": [
@@ -53,6 +53,9 @@
         "chardet": {
             "version": "==3.0.4"
         },
+        "coverage": {
+            "version": "==4.4.1"
+        },
         "docutils": {
             "version": "==0.13.1"
         },
@@ -76,6 +79,9 @@
         },
         "pytest": {
             "version": "==3.1.2"
+        },
+        "pytest-cov": {
+            "version": "==2.5.1"
         },
         "pytz": {
             "version": "==2017.2"
