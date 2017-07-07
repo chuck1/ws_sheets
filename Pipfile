@@ -11,6 +11,6 @@ pytest = "*"
 "-e ../async-patterns" = "*"
 [packages]
 numpy = "*"
-modconf = "==0.4b1"
+modconf = "==0.4b3"
 fs = "*"
 codemach = "==0.4b3"
