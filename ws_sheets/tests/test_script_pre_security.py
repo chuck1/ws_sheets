@@ -1,11 +1,10 @@
 import numpy
-import unittest
 import modconf
 import ws_sheets
 import ws_sheets.exception
 import ws_sheets.tests.conf
 
-class ScriptPreSecurityTest(unittest.TestCase):
+class TestScriptPreSecurity:
     def test_1(self):
         b = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
     
@@ -19,9 +18,7 @@ class ScriptPreSecurityTest(unittest.TestCase):
         print(repr(b.script_pre.exec_exc))
         print(repr(b.script_pre.exec_exc.__class__))
         
-        self.assertTrue(isinstance(b.script_pre.exec_exc,
-            ws_sheets.exception.NotAllowedError))
-        
+        assert isinstance(b.script_pre.exec_exc, ws_sheets.exception.NotAllowedError)
 
         b.set_script_pre('getattr(book,\'do_all\')')
         
@@ -33,8 +30,8 @@ class ScriptPreSecurityTest(unittest.TestCase):
         print(repr(b.script_pre.exec_exc))
         print(repr(b.script_pre.exec_exc.__class__))
         
-        self.assertTrue(isinstance(b.script_pre.exec_exc,
-            ws_sheets.exception.NotAllowedError))
+        assert isinstance(b.script_pre.exec_exc,
+            ws_sheets.exception.NotAllowedError)
         
         
         b.set_script_pre('object.__getattribute__(book,\'do_all\')')
@@ -47,8 +44,8 @@ class ScriptPreSecurityTest(unittest.TestCase):
         print(repr(b.script_pre.exec_exc))
         print(repr(b.script_pre.exec_exc.__class__))
         
-        self.assertTrue(isinstance(b.script_pre.exec_exc,
-            ws_sheets.exception.NotAllowedError))
+        assert isinstance(b.script_pre.exec_exc,
+            ws_sheets.exception.NotAllowedError)
         
         
 

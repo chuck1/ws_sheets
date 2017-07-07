@@ -118,8 +118,7 @@ class SecurityTest1(object):
     def call_script_exec(self, book, script, code, _globals, res):
         logger.debug('{} call_script_exec'.format(self.__class__.__name__))
 
-        e = codemach.Machine()
-        #e.verbose = 1
+        m = codemach.Machine()
 
         def load_attr(thing, name):
             if thing is book:
@@ -128,8 +127,9 @@ class SecurityTest1(object):
                             "for security, get attribute {} of {} is forbidden".format(
                                 name, thing))
 
-        def call_function_getattr(f, thing, name):
-            load_attr(thing, name)
+        def call_function(f, *args):
+            if (f is getattr) or (f is object.__getattribute__):
+                load_attr(*args)
 
         def import_name(name, *args):
             name_split = name.split('.')
@@ -138,14 +138,13 @@ class SecurityTest1(object):
                 raise ws_sheets.exception.NotAllowedError(
                         "module '{}' is not allowed".format(name_split[0]))
 
-        e.signal['LOAD_ATTR'].subscribe(book, load_attr)
-        e.signal['CALL_FUNCTION'].subscribe(getattr, call_function_getattr)
-        e.signal['CALL_FUNCTION'].subscribe(object.__getattribute__, call_function_getattr)
-        e.signal['IMPORT_NAME'].subscribe(import_name)
+        m.add_callback('LOAD_ATTR', load_attr)
+        m.add_callback('CALL_FUNCTION', call_function)
+        m.add_callback('IMPORT_NAME', import_name)
 
         with ws_sheets.context.context(book, ws_sheets.context.Context.CELL):
             #exec(code, _globals)
-            e.exec(code, _globals)
+            m.exec(code, _globals)
 
 
 
