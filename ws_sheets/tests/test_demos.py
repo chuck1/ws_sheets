@@ -4,8 +4,6 @@ import collections
 
 import ws_sheets.tests.conf.simple
 
-
-
 class TestBase(unittest.TestCase):
     def setUp(self):
         self.book = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
@@ -25,6 +23,19 @@ class TestBase(unittest.TestCase):
         from selenium.webdriver.common.by import By
 
         print('wait for page to load')
+        WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, 
+                    '/html/body')))
+        
+        e = driver.find_element_by_xpath('/html/body')
+
+        print('body found')
+        print(e)
+        
+        for e in driver.find_elements(By.XPATH, '/html/body/*'):
+            print(e.tag_name, repr(e.text))
+
+
         WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, 
                     '//table[@class="htCore"]')))
