@@ -1,17 +1,17 @@
 [[source]]
-url = "https://pypi.python.org/simple"
 verify_ssl = true
+url = "https://pypi.python.org/simple"
 [packages]
-fs = "*"
-codemach = "==0.4b6"
-numpy = "*"
-async-patterns = "==0.3b7"
 modconf = "==0.4b3"
+codemach = "==0.4b6"
+fs = "*"
+numpy = "*"
+async-patterns = "==0.3b8"
 [dev-packages]
-"-e ." = "*"
-pytest-cov = "*"
 Sphinx = "*"
 "-e ../modconf" = "*"
-pytest = "*"
+pytest-cov = "*"
 "-e ../async-patterns" = "*"
 "-e ../codemach" = "*"
+pytest = "*"
+"-e ." = "*"
