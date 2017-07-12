@@ -2,16 +2,16 @@
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 [packages]
-codemach = "==0.4b7"
 modconf = "==0.4b3"
 numpy = "*"
 fs = "*"
+codemach = "==0.4b8"
 async-patterns = "==0.3b8"
 [dev-packages]
-"-e ../modconf" = "*"
 "-e ." = "*"
-pytest-cov = "*"
-"-e ../async-patterns" = "*"
 pytest = "*"
-Sphinx = "*"
+pytest-cov = "*"
 "-e ../codemach" = "*"
+Sphinx = "*"
+"-e ../modconf" = "*"
+"-e ../async-patterns" = "*"
