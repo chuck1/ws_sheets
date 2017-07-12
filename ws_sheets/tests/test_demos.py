@@ -53,6 +53,7 @@ class TestImport(TestBase):
     def setup(self, b):
         b.set_script_pre('import math\nprint(math)\n')
         b.set_cell('0', 0, 0, 'math.pi')
+
     def test(self):
         self.setup(self.book)
         print(self.book['0'][0, 0])
@@ -91,7 +92,8 @@ class TestSum(TestBase):
     
     def test(self):
         self.setup(self.book)
-        self.assertEqual(self.book['0'][0, 1], 15)
+        
+        assert self.book['0'][0, 1] == 15
 
 class TestIndexof(TestBase):
     def setup(self, bp):
@@ -114,6 +116,7 @@ class TestIndexof(TestBase):
 class TestLookup(TestBase):
 
     def setup(self, b):
+        b.set_docs("In the script, the statement ``in_ == value`` produces a array of booleans with size equal to ``in_`` which is true where values of ``in_`` are equal to ``value``. The ``numpy.argwhere`` functions returns an array of indicies where the input array is True. So we get a potentially shorter array with the indicies of ``in_`` that meet our criteria. We then index ``result`` using that array, which will return the values of ``result`` at those indices.")
     
         b.set_script_pre("import numpy\ndef lookup(a, b, c):\n  return c[numpy.argwhere(b == a)]")
     
@@ -234,7 +237,57 @@ y = 2
     
     def test(self):
         self.setup(self.book)
+ 
+class TestLookup2(TestBase):
+    def setup(self, b):
+        b.set_docs("In the script, the statement ``in_ == value`` produces a array of booleans with size equal to ``in_`` which is true where values of ``in_`` are equal to ``value``. The ``numpy.argwhere`` functions returns an array of indicies where the input array is True. So we get a potentially shorter array with the indicies of ``in_`` that meet our criteria. We then index ``result`` using that array, which will return the values of ``result`` at those indices.")
+
+        b.set_script_pre("""
+import numpy
+import operator
+
+def lookup(value, in_, result):
+    return result[numpy.argwhere(in_ == value)]
+
+def lookup_ifs(result, *args):
+    b = numpy.broadcast_to(True, numpy.shape(result))
+    for in_, value, op in args:
+        b = numpy.logical_and(b, in_ == value)
+    return result[numpy.argwhere(b)]
+""")
+    
+        b.set_cell('0', 0, 0, '1')
+        b.set_cell('0', 1, 0, '2')
+        b.set_cell('0', 2, 0, '3')
+        b.set_cell('0', 3, 0, '4')
+        b.set_cell('0', 4, 0, '5')
+        b.set_cell('0', 5, 0, '6')
         
+        b.set_cell('0', 0, 1, '1')
+        b.set_cell('0', 1, 1, '2')
+        b.set_cell('0', 2, 1, '3')
+        b.set_cell('0', 3, 1, '4')
+        b.set_cell('0', 4, 1, '5')
+        b.set_cell('0', 5, 1, '6')
+ 
+        b.set_cell('0', 0, 2, "'a'")
+        b.set_cell('0', 1, 2, "'b'")
+        b.set_cell('0', 2, 2, "'c'")
+        b.set_cell('0', 3, 2, "'d'")
+        b.set_cell('0', 4, 2, "'e'")
+        b.set_cell('0', 5, 2, "'f'")
+
+       
+        b.set_cell('0', 0, 3, 'lookup_ifs(sheet[:,2], (sheet[:,0], 2, operator.gt), (sheet[:,1], 5, operator.lt))')
+    
+    def test(self):
+        self.setup(self.book)
+        b = self.book
+
+        print(b.script_pre.output)
+
+        assert numpy.all(self.book['0'][0, 3] == numpy.array(['c','d']))
+       
 DEMOS = collections.OrderedDict((
             ('add_row_and_column', TestAddRowAndColumn),
             ('named_range', TestNamedRange),
@@ -242,6 +295,7 @@ DEMOS = collections.OrderedDict((
             ('sum', TestSum),
             ('indexof', TestIndexof),
             ('lookup', TestLookup),
+            ('lookup2', TestLookup2),
             ('datetime', TestDatetime),
             ('string', TestStrings),
             ('math', TestMath),

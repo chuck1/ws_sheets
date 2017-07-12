@@ -11,6 +11,7 @@ class Settings:
             )
     
     MIDDLEWARE_SECURITY_MODULES_APPROVED = (
+            "operator",
             "math",
             "numpy",
             "time",
