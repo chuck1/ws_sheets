@@ -1,5 +1,5 @@
 six==1.10.0
-async-patterns==0.3b11
+async-patterns==0.3b13
 fs==2.0.4
 pytz==2017.2
 appdirs==1.4.3
