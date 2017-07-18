@@ -12,7 +12,7 @@ imagesize==0.7.1
 Jinja2==2.9.6
 MarkupSafe==1.0
 modconf==0.3
-numpy==1.13.0
+numpy==1.13.1
 pkgtool==0.1b52
 py==1.4.34
 Pygments==2.2.0
