@@ -13,11 +13,12 @@ with open('Pipfile.lock') as f:
     p = json.loads(f.read())
 
 def _install_requires():
-    for k, v in p['default'].items():
-        if isinstance(v, str):
-            yield k + v
-        else:
-            yield k + v['version'] 
+    with open('requirements.txt') as f:
+        s = f.read()
+    s = s.strip().split('\n')
+    s = [s.strip() for s in s]
+    print(s)
+    return s
 
 install_requires = list(_install_requires())
 
