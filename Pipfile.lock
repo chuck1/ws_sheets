@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ce32dd0c0c45b9739d5f5a04bd66c0671ede0f62c311c13fd60bdb39e8136292"
+            "sha256": "58240b9ecde2b5287ce6d083923522b684dc58a26c6d4fd16f69cb54de6c6a03"
         },
         "requires": {},
         "sources": [
@@ -42,9 +42,6 @@
     },
     "develop": {
         "-e .": "*",
-        "-e ../async-patterns": "*",
-        "-e ../codemach": "*",
-        "-e ../modconf": "*",
         "alabaster": {
             "version": "==0.7.10"
         },

@@ -3,12 +3,9 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 [dev-packages]
 Sphinx = "*"
-"-e ../async-patterns" = "*"
 pytest = "*"
 pytest-cov = "*"
-"-e ../codemach" = "*"
 "-e ." = "*"
-"-e ../modconf" = "*"
 [packages]
 async-patterns = "==0.3b11"
 fs = "*"
