@@ -6,4 +6,4 @@ appdirs==1.4.3
 numpy==1.13.1
 setuptools==36.2.0
 codemach==0.4b13
-modconf==0.4b6
+modconf==0.4b8
