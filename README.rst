@@ -1,17 +1,19 @@
 ws_sheets
 =========
-
 .. image:: https://travis-ci.org/chuck1/ws_sheets.svg?branch=master
     :target: https://travis-ci.org/chuck1/ws_sheets
 .. image:: https://codecov.io/gh/chuck1/ws_sheets/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/chuck1/ws_sheets
+.. image:: https://readthedocs.org/projects/ws_sheets/badge/?version=latest
+   :target: http://ws_sheets.readthedocs.io/
+   :alt: Documentation Status
 .. image:: https://img.shields.io/pypi/v/ws_sheets.svg
-    :target: https://pypi.python.org/pypi/ws_sheets
+   :target: https://pypi.python.org/pypi/ws_sheets
+.. image:: https://img.shields.io/pypi/pyversions/ws_sheets.svg
+   :target: https://pypi.python.org/pypi/ws_sheets
 
-Python module defining spreadsheet-like objects in
-which cell and script inputs are pure python code.
-
-https://ws_sheets.readthedocs.io
+Python module defining spreadsheet-like objects in which
+cell and script inputs are pure python code.
 
 Install
 -------
@@ -27,7 +29,6 @@ Test
 
     git clone git@github.com:chuck1/ws_sheets
     cd ws_sheets
-    pip3 install -r requirements.txt
     pip3 install -e .
     pytest
 
@@ -52,7 +53,7 @@ Example
     print(book['0'][0, 3])
     print(book['0'][0, 4])
 
-Below is the output. Each line shows the opname and the stack after the operation.
+Output:
 
 .. testoutput::
     
