@@ -2,11 +2,11 @@ setuptools==36.2.0
 six==1.10.0
 appdirs==1.4.3
 pytest-asyncio==0.6.0
-modconf==0.4b8
+modconf==0.4b9
 numpy==1.13.1
 async-patterns==0.3b13
 py==1.4.34
-codemach==0.4b13
+codemach==0.4b14
 fs==2.0.4
 pytz==2017.2
 pytest==3.1.3
