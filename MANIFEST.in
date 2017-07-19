@@ -1,2 +1,3 @@
 include Setup.lock
 include Pipfile.lock
+include requirements.txt
