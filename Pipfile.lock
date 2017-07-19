@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "35918be8aa5ad9608536bdcddee9fe6317ddcbddb1466d855d1a6a9b5af89e2e"
+            "sha256": "386e11ecff3501d4026d77455982488f2d7e97485a6b52ff519d248d52639436"
         },
         "requires": {},
         "sources": [
@@ -19,13 +19,13 @@
             "version": "==0.3b13"
         },
         "codemach": {
-            "version": "==0.4b13"
+            "version": "==0.4b14"
         },
         "fs": {
             "version": "==2.0.4"
         },
         "modconf": {
-            "version": "==0.4b8"
+            "version": "==0.4b9"
         },
         "numpy": {
             "version": "==1.13.1"
