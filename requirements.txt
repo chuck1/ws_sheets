@@ -6,5 +6,5 @@ py==1.4.34
 numpy==1.13.1
 pytz==2017.2
 modconf==0.4b9
-setuptools==36.2.0
+setuptools==36.2.5
 codemach==0.4b14
