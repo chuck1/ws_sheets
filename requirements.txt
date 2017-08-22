@@ -1,4 +1,4 @@
-fs==2.0.4
+fs==2.0.9
 six==1.10.0
 appdirs==1.4.3
 async-patterns==0.3b14
