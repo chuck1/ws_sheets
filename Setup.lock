@@ -1,9 +1,4 @@
 {
-    "author": "Charles Rymal",
-    "description": "python spreadsheets",
-    "url": "http://github.com/chuck1/ws_sheets",
-    "license": "MIT",
-    "name": "ws_sheets",
     "packages": [
         "ws_sheets",
         "ws_sheets.tests",
@@ -13,5 +8,10 @@
     "classifiers": [
         "Programming Language :: Python :: 3.6"
     ],
-    "author_email": "charlesrymal@gmail.com"
+    "license": "MIT",
+    "url": "http://github.com/chuck1/ws_sheets",
+    "author_email": "charlesrymal@gmail.com",
+    "name": "ws_sheets",
+    "description": "python spreadsheets",
+    "author": "Charles Rymal"
 }
