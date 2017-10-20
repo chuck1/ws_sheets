@@ -1,6 +1,6 @@
 import logging
 
-import codemach
+import codemach.machine
 
 import ws_sheets.exception
 import ws_sheets.middleware
@@ -109,7 +109,7 @@ class SecurityTest1(object):
 
     def call_cell_eval(self, book, cell, code, _globals, res):
 
-        e = codemach.Machine()
+        e = codemach.machine.Machine()
 
         with ws_sheets.context.context(book, ws_sheets.context.Context.CELL):
             #res.return_value = eval(code, _globals)
@@ -118,7 +118,7 @@ class SecurityTest1(object):
     def call_script_exec(self, book, script, code, _globals, res):
         logger.debug('{} call_script_exec'.format(self.__class__.__name__))
 
-        m = codemach.Machine()
+        m = codemach.machine.Machine()
 
         def load_attr(thing, name):
             if thing is book:
