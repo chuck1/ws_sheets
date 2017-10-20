@@ -1,7 +1,10 @@
 import numpy
 import collections
 
+import pytest
 import toml
+
+import ws_sheets
 
 class _TestBase:
     def setUp(self):
@@ -139,9 +142,7 @@ class Lookup(_TestBase):
 
         print('test lookup', self.book['0'][0, 2])
 
-        self.assertEqual(
-                numpy.array([['banana']]),
-                self.book['0'][0, 2])
+        assert numpy.array([['banana']]) == self.book['0'][0, 2]
 
 class Datetime(_TestBase):
     def setup(self, b):
@@ -289,7 +290,8 @@ def lookup_ifs(result, *args):
         print(b.script_pre.output)
 
         assert numpy.all(self.book['0'][0, 3] == numpy.array(['c','d']))
-       
+ 
+      
 DEMOS = collections.OrderedDict((
             ('add_row_and_column', AddRowAndColumn),
             ('named_range', NamedRange),
@@ -304,6 +306,21 @@ DEMOS = collections.OrderedDict((
             ('numericaltypes', NumericalTypes),
             ))
 
+#@pytest.mark.asyncio
+@pytest.mark.parametrize("cls", DEMOS.values())
+def test(cls):
+    
+    o = cls()
+    
+    print('------------------ {} -----------------'.format(cls))
+    
+    with open('ws_sheets.toml') as f:
+        conf = toml.loads(f.read())
+
+    o.book = ws_sheets.Book(conf)
+    
+    print('call test')
+    o.test()
 
 
 
