@@ -1,7 +1,8 @@
-numpy==1.13.3
-fs==2.0.12
+pytz==2017.2
+codemach==0.4b17
 six==1.11.0
 appdirs==1.4.3
-codemach==0.4b17
-pytz==2017.2
+numpy==1.13.3
+toml==0.9.3.1
+fs==2.0.12
 async-patterns==0.3b14
