@@ -1,6 +1,5 @@
 import numpy
 import unittest
-import modconf
 import ws_sheets
 
 def test_cell(settings):

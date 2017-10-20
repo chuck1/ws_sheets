@@ -1,4 +1,3 @@
-import modconf
 import ws_sheets
 
 #import ws_sheets.tests.settings
