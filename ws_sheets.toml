@@ -1,0 +1,37 @@
+
+middleware_security = [
+        ["ws_sheets.ext.middleware.security","SecurityTest1"],
+        ]
+
+middleware_security_modules_approved = [
+        "operator",
+        "math",
+        "numpy",
+        "time",
+        "datetime",
+        "pytz",
+        ]
+
+middleware_security_builtins_approved = [
+        "__build_class__",
+        "__name__",
+        "abs",
+        "complex",
+        "dir",
+        "divmod",
+        "Exception",
+        "float",
+        "getattr",
+        "globals",
+        "int",
+        "list",
+        "object",
+        "pow",
+        "print",
+        "range",
+        "repr",
+        "sum",
+        "type",
+        ]
+
+

@@ -1,29 +1,29 @@
 import numpy
 import unittest
 
+import pytest
+
 import ws_sheets
 import ws_sheets.exception
-import ws_sheets.tests.conf.simple
 
-class SetScriptPreTest(unittest.TestCase):
-    def test(self):
-        b = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
-    
-        b.set_script_pre('import os')
-        b.do_all()
-        
-        print('output')
-        print(b.script_pre.output)
+@pytest.mark.asyncio
+async def test_SetScriptPreTest(settings):
+ 
+    b = ws_sheets.Book(settings)
 
-        self.assertTrue(isinstance(
-                b.script_pre.exec_exc,
-                ws_sheets.exception.NotAllowedError))
+    b.set_script_pre('import os')
+    b.do_all()
     
-        b.set_script_pre("a = 1\n")
+    print('output')
+    print(b.script_pre.output)
+
+    assert isinstance(
+            b.script_pre.exec_exc,
+            ws_sheets.exception.NotAllowedError)
+
+    b.set_script_pre("a = 1\n")
+
+    b.set_cell('0', 0, 0, "a")
     
-        b.set_cell('0', 0, 0, "a")
-        
-        self.assertEqual(
-                b['0'][0, 0],
-                1)
+    assert b['0'][0, 0] == 1
 

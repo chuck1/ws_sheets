@@ -11,8 +11,8 @@ class SecurityTest1(object):
     def call_book_globals(self, book, res):
         #print('called '+repr(self)+' call_book_globals g='+str(res._globals))
     
-        self.MODULES_APPROVED = book.settings.MIDDLEWARE_SECURITY_MODULES_APPROVED
-        self.BUILTINS_APPROVED = book.settings.MIDDLEWARE_SECURITY_BUILTINS_APPROVED
+        self.MODULES_APPROVED = book.settings['middleware_security_modules_approved']
+        self.BUILTINS_APPROVED = book.settings['middleware_security_builtins_approved']
         
         res._globals['__builtins__'].update(
                 dict((name, __builtins__[name]) for name in self.BUILTINS_APPROVED))

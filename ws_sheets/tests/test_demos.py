@@ -1,12 +1,14 @@
 import numpy
-import unittest
 import collections
 
-import ws_sheets.tests.conf.simple
+import toml
 
-class TestBase(unittest.TestCase):
+class _TestBase:
     def setUp(self):
-        self.book = ws_sheets.Book(ws_sheets.tests.conf.simple.Settings)
+        with open('ws_sheets.toml') as f:
+            conf = toml.loads(f.read())
+
+        self.book = ws_sheets.Book(conf)
 
     def setup(self, book):
         pass
@@ -40,7 +42,7 @@ class TestBase(unittest.TestCase):
                 EC.presence_of_element_located((By.XPATH, 
                     '//table[@class="htCore"]')))
 
-class TestAddRowAndColumn(TestBase):
+class AddRowAndColumn(_TestBase):
     def setup(self, b):
         print(b.__class__)
         print(b['0'].__class__)
@@ -49,7 +51,7 @@ class TestAddRowAndColumn(TestBase):
         b['0'].add_column(0)
         b['0'].add_row(0)
 
-class TestImport(TestBase):
+class Import(_TestBase):
     def setup(self, b):
         b.set_script_pre('import math\nprint(math)\n')
         b.set_cell('0', 0, 0, 'math.pi')
@@ -58,7 +60,7 @@ class TestImport(TestBase):
         self.setup(self.book)
         print(self.book['0'][0, 0])
 
-class TestNamedRange(TestBase):
+class NamedRange(_TestBase):
     def setup(self, book):
 
         string_named_range = "def a():\n  return book['0'][0:2, 0]"
@@ -79,7 +81,7 @@ class TestNamedRange(TestBase):
 
         print(await self.book['0'].getitem((2, 0)))
 
-class TestSum(TestBase):
+class Sum(_TestBase):
     def setup(self, bp):
     
         bp.set_cell('0', 0, 0, '1')
@@ -95,7 +97,7 @@ class TestSum(TestBase):
         
         assert self.book['0'][0, 1] == 15
 
-class TestIndexof(TestBase):
+class Indexof(_TestBase):
     def setup(self, bp):
     
         bp.set_script_pre("import numpy\ndef indexof(arr, a):\n  i = numpy.argwhere(arr == a)\n  return i")
@@ -113,7 +115,7 @@ class TestIndexof(TestBase):
 
         print('test indexof', self.book['0'][0, 1])
     
-class TestLookup(TestBase):
+class Lookup(_TestBase):
 
     def setup(self, b):
         b.set_docs("In the script, the statement ``in_ == value`` produces a array of booleans with size equal to ``in_`` which is true where values of ``in_`` are equal to ``value``. The ``numpy.argwhere`` functions returns an array of indicies where the input array is True. So we get a potentially shorter array with the indicies of ``in_`` that meet our criteria. We then index ``result`` using that array, which will return the values of ``result`` at those indices.")
@@ -141,7 +143,7 @@ class TestLookup(TestBase):
                 numpy.array([['banana']]),
                 self.book['0'][0, 2])
 
-class TestDatetime(TestBase):
+class Datetime(_TestBase):
     def setup(self, b):
         b.set_script_pre("import datetime\nimport pytz")
     
@@ -162,7 +164,7 @@ class TestDatetime(TestBase):
         print('test datetime', self.book['0'][2, 0])
         print('test datetime', self.book['0'][2, 1])
 
-class TestStrings(TestBase):
+class Strings(_TestBase):
     def setup(self, b):
         b.set_docs("""
 `python str documentation`_
@@ -183,7 +185,7 @@ class TestStrings(TestBase):
         print('test strings', self.book['0'][1, 0])
         print('test strings', self.book['0'][2, 0])
 
-class TestMath(TestBase):
+class Math(_TestBase):
     def setup(self, b):
         b.set_docs("""
 `python standard library: math`__
@@ -204,7 +206,7 @@ import math
         b.set_cell('0', 4, 0, "math.pow(2, 2)")
         b.set_cell('0', 5, 0, "math.exp(1)")
 
-class TestNumericalTypes(TestBase):
+class NumericalTypes(_TestBase):
     def setup(self, b):
         b.set_docs("""
 `python numerical types`__
@@ -238,7 +240,7 @@ y = 2
     def test(self):
         self.setup(self.book)
  
-class TestLookup2(TestBase):
+class Lookup2(_TestBase):
     def setup(self, b):
         b.set_docs("In the script, the statement ``in_ == value`` produces a array of booleans with size equal to ``in_`` which is true where values of ``in_`` are equal to ``value``. The ``numpy.argwhere`` functions returns an array of indicies where the input array is True. So we get a potentially shorter array with the indicies of ``in_`` that meet our criteria. We then index ``result`` using that array, which will return the values of ``result`` at those indices.")
 
@@ -289,17 +291,17 @@ def lookup_ifs(result, *args):
         assert numpy.all(self.book['0'][0, 3] == numpy.array(['c','d']))
        
 DEMOS = collections.OrderedDict((
-            ('add_row_and_column', TestAddRowAndColumn),
-            ('named_range', TestNamedRange),
-            ('import', TestImport),
-            ('sum', TestSum),
-            ('indexof', TestIndexof),
-            ('lookup', TestLookup),
-            ('lookup2', TestLookup2),
-            ('datetime', TestDatetime),
-            ('string', TestStrings),
-            ('math', TestMath),
-            ('numericaltypes', TestNumericalTypes),
+            ('add_row_and_column', AddRowAndColumn),
+            ('named_range', NamedRange),
+            ('import', Import),
+            ('sum', Sum),
+            ('indexof', Indexof),
+            ('lookup', Lookup),
+            ('lookup2', Lookup2),
+            ('datetime', Datetime),
+            ('string', Strings),
+            ('math', Math),
+            ('numericaltypes', NumericalTypes),
             ))
 
 

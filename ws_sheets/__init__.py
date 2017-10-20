@@ -115,7 +115,7 @@ class Book(object):
 
         # middleware
         self.middleware_security = ws_sheets.middleware.MiddlewareSecurityManager(
-                self.settings.MIDDLEWARE_SECURITY)
+                self.settings['middleware_security'])
 
         """
         string to be interpreted as rst and displayed on webpage
@@ -132,7 +132,7 @@ class Book(object):
         self.__dict__.update(state)
         self.context = ws_sheets.context.Context.NONE
         self.middleware_security = ws_sheets.middleware.MiddlewareSecurityManager(
-                self.settings.MIDDLEWARE_SECURITY)
+                self.settings['middleware_security'])
         self.script_pre.book = self
         self.script_post.book = self
         for sheet in self.sheets.values():
