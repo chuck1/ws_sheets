@@ -26,4 +26,4 @@ requests==2.18.4
 pytest-cov==2.5.1
 docutils==0.14
 jinja2==2.9.6
-certifi==2017.7.27.1
+certifi==2017.11.5
