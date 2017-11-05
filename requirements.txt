@@ -4,5 +4,5 @@ six==1.11.0
 appdirs==1.4.3
 numpy==1.13.3
 toml==0.9.3.1
-fs==2.0.12
+fs==2.0.15
 async-patterns==0.3b14
