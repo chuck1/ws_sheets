@@ -9,7 +9,7 @@ async-patterns==0.3b14
 sphinxcontrib-websupport==1.0.1
 babel==2.5.1
 six==1.11.0
-py==1.4.34
+py==1.5.0
 idna==2.6
 urllib3==1.22
 snowballstemmer==1.2.1
