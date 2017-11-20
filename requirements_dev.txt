@@ -4,7 +4,7 @@ six==1.11.0
 appdirs==1.4.3
 numpy==1.13.3
 toml==0.9.3.1
-fs==2.0.12
+fs==2.0.17
 async-patterns==0.3b14
 sphinxcontrib-websupport==1.0.1
 babel==2.5.1
