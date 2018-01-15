@@ -7,7 +7,7 @@ toml==0.9.3.1
 fs==2.0.12
 async-patterns==0.3b14
 sphinxcontrib-websupport==1.0.1
-babel==2.5.1
+babel==2.5.2
 six==1.11.0
 py==1.4.34
 idna==2.6
