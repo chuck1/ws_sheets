@@ -1,4 +1,4 @@
-pytz==2017.2
+pytz==2018.3
 codemach==0.4b17
 six==1.11.0
 appdirs==1.4.3
