@@ -15,7 +15,7 @@ urllib3==1.22
 snowballstemmer==1.2.1
 pytest==3.4.0
 imagesize==0.7.1
-coverage==4.4.1
+coverage==4.5.1
 pytz==2018.3
 pygments==2.2.0
 markupsafe==1.0
