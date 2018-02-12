@@ -4,9 +4,8 @@ python:
 - '3.6'
 - '3.6-dev'
 install:
-- pip3 install -e .
-- pip install pytest-cov
-- pip install codecov
+- pip install -r requirements_dev.txt
+- pip install -e .
 script:
 - py.test --cov=`python3 -c "import json;print(json.load(open('Setup.lock'))['name'])"`
 after_success:
