@@ -3,7 +3,7 @@ codemach==0.4b18
 six==1.11.0
 appdirs==1.4.3
 numpy==1.14.0
-toml==0.9.3.1
+toml==0.9.4
 fs==2.0.12
 async-patterns==0.3b14
 sphinxcontrib-websupport==1.0.1
