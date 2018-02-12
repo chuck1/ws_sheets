@@ -1,5 +1,5 @@
 pytz==2017.2
-codemach==0.4b17
+codemach==0.4b18
 six==1.11.0
 appdirs==1.4.3
 numpy==1.14.0
