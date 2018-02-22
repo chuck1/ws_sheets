@@ -42,7 +42,7 @@ class _TestBase:
 
         path = '//table[@id="table_test"]/tr/td[@id="0_0"]/input'
 
-        WebDriverWait(webdriver, 5).until(EC.presence_of_element_located((By.XPATH, path)))
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, path)))
 
 class AddRowAndColumn(_TestBase):
     def setup(self, b):
