@@ -40,10 +40,9 @@ class _TestBase:
         for e in driver.find_elements(By.XPATH, '/html/body/*'):
             print(e.tag_name, repr(e.text))
 
+        path = '//table[@id="table_test"]/tr/td[@id="0_0"]/input'
 
-        WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.XPATH, 
-                    '//table[@class="htCore"]')))
+        WebDriverWait(webdriver, 5).until(EC.presence_of_element_located((By.XPATH, path)))
 
 class AddRowAndColumn(_TestBase):
     def setup(self, b):
