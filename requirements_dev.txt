@@ -30,4 +30,4 @@ Sphinx==1.7.0
 sphinxcontrib-websupport==1.0.1
 toml==0.9.4
 urllib3==1.22
--e git+https://github.com/chuck1/ws_sheets@abc3ebd0650074c0ca7ff6efeba73d57b3df1667#egg=ws_sheets
+-e git+https://github.com/chuck1/ws_sheets@8186f2a164b441934c7e046925f570fec40343ae#egg=ws_sheets
