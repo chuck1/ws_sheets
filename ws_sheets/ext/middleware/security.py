@@ -109,16 +109,15 @@ class SecurityTest1(object):
 
     def call_cell_eval(self, book, cell, code, _globals, res):
 
-        e = codemach.machine.Machine()
+        e = codemach.machine.Machine(code)
 
         with ws_sheets.context.context(book, ws_sheets.context.Context.CELL):
-            #res.return_value = eval(code, _globals)
-            res.return_value = e.exec(code, _globals)
+            res.return_value = e.execute(_globals)
 
     def call_script_exec(self, book, script, code, _globals, res):
         logger.debug('{} call_script_exec'.format(self.__class__.__name__))
 
-        m = codemach.machine.Machine()
+        m = codemach.machine.Machine(code)
 
         def load_attr(thing, name):
             if thing is book:
@@ -144,7 +143,7 @@ class SecurityTest1(object):
 
         with ws_sheets.context.context(book, ws_sheets.context.Context.CELL):
             #exec(code, _globals)
-            m.exec(code, _globals)
+            m.execute(_globals)
 
 
 
