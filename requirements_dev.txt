@@ -20,6 +20,7 @@ py==1.5.2
 Pygments==2.2.0
 pyparsing==2.2.0
 pytest==3.4.1
+pytest-asyncio==0.8.0
 pytest-cov==2.5.1
 pytz==2018.3
 requests==2.18.4
@@ -29,4 +30,4 @@ Sphinx==1.7.0
 sphinxcontrib-websupport==1.0.1
 toml==0.9.4
 urllib3==1.22
--e git+https://github.com/chuck1/ws_sheets@14d0584b1ea180c8bcc7d3322ab42a75aebd097a#egg=ws_sheets
+-e git+https://github.com/chuck1/ws_sheets@5283419a153ad0a3d4f8771fec3539d04a2b38d1#egg=ws_sheets
