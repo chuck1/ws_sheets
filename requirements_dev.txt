@@ -3,7 +3,7 @@ appdirs==1.4.3
 async-patterns==0.3b14
 attrs==17.4.0
 Babel==2.5.3
-certifi==2018.1.18
+certifi==2022.12.7
 chardet==3.0.4
 -e git+https://github.com/chuck1/codemach@30af42787f04396da2b051f7b278aae97bf70efa#egg=codemach
 coverage==4.5.1
